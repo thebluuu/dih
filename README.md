@@ -4,6 +4,8 @@ Originally a paid client, but since the new owner dumped me from the dev team of
 
 This version of the client does NOT hide strings from memory, since ablue never really gave me full access over my own client (that being: giving me the string transformer so i can hide strings in memory). The code for hiding strings is in `EncryptedString`. If you do create one and want to support the project, please DM me on discord (I will not be buying the transformer): ```lvstrng```
 
+NOTE: Some of the stuff here is pasted by ablue lmaooo (Not damage utils, I was lazy to make damage utils for 1.21 so i just pasted from meteor client)
+
 # How to build
 
 - Launch the project in IntelliJ
