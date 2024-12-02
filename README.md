@@ -6,5 +6,5 @@ Originally a paid client, but since the new owner dumped me from the dev team of
 
 - Launch the project in IntelliJ
 - Make a new configuration and make it do `build`
-![image](https://github.com/user-attachments/assets/b2e8853e-2916-4219-9443-85ff7549d418)
 - Find jar in project's build/libs (name should be argon-b1.1.jar unless you change it)
+![image](https://github.com/user-attachments/assets/b2e8853e-2916-4219-9443-85ff7549d418)
