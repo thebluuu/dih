@@ -20,10 +20,10 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 			.setDescription(EncryptedString.of("Whether it should W tap in air"));
 	private final TimerUtils sprintTimer = new TimerUtils();
 	private final TimerUtils tapTimer = new TimerUtils();
-
 	private boolean holdingForward;
 	private boolean sprinting;
 	private int currentDelay;
+	private boolean jumpedWhileHitting;
 
 	public AutoWTap() {
 		super(EncryptedString.of("Auto WTap"),
@@ -38,6 +38,7 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 		eventManager.add(PacketSendListener.class, this);
 		eventManager.add(HudListener.class, this);
 		currentDelay = delay.getRandomValueInt();
+		jumpedWhileHitting = false;
 		super.onEnable();
 	}
 
@@ -59,6 +60,19 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 		if (!inAir.getValue() && !mc.player.isOnGround())
 			return;
 
+		if (mc.player.isOnGround()) {
+			jumpedWhileHitting = false;
+		}
+
+		if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1) {
+			if (holdingForward || sprinting) {
+				mc.options.forwardKey.setPressed(true);
+				holdingForward = false;
+				sprinting = false;
+				return;
+			}
+		}
+
 		if (holdingForward && tapTimer.delay(1)) {
 			mc.options.forwardKey.setPressed(false);
 			sprintTimer.reset();
@@ -66,12 +80,11 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 			holdingForward = false;
 		}
 
-		if (!sprinting || !sprintTimer.delay(currentDelay))
-			return;
-
-		mc.options.forwardKey.setPressed(true);
-		sprinting = false;
-		currentDelay = delay.getRandomValueInt();
+		if (sprinting && sprintTimer.delay(currentDelay)) {
+			mc.options.forwardKey.setPressed(true);
+			sprinting = false;
+			currentDelay = delay.getRandomValueInt();
+		}
 	}
 
 	@Override
@@ -90,7 +103,14 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 
 			@Override
 			public void attack() {
-				if (mc.options.forwardKey.isPressed() && mc.player.isSprinting()) {
+				if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1) {
+					jumpedWhileHitting = true;
+				}
+
+				if (!inAir.getValue() && !mc.player.isOnGround())
+					return;
+
+				if (!jumpedWhileHitting && mc.options.forwardKey.isPressed() && mc.player.isSprinting()) {
 					sprintTimer.reset();
 					holdingForward = true;
 				}
