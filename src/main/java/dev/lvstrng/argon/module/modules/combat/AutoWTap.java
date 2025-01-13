@@ -64,7 +64,7 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 			jumpedWhileHitting = false;
 		}
 
-		if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1) {
+		if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1 && !inAir.getValue()) {
 			if (holdingForward || sprinting) {
 				mc.options.forwardKey.setPressed(true);
 				holdingForward = false;
@@ -103,7 +103,7 @@ public final class AutoWTap extends Module implements PacketSendListener, HudLis
 
 			@Override
 			public void attack() {
-				if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1) {
+				if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == 1 && !inAir.getValue()) {
 					jumpedWhileHitting = true;
 				}
 
