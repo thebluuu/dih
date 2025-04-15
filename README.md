@@ -2,15 +2,13 @@
 
 ***PLEASE READ THE LICENSE BEFORE DOING ANYTHING WITH THE SOURCE CODE OF THE CLIENT.***.
 
-# Argon Minecraft Ghost Client
-
-## What you are allowed to do and what not
-
 I am writing this because I see a lot of people copying my work and selling it without giving me credit or informing me/asking me for permission. Well, you are **NOT** allowed to rename this client. You are **NOT** allowed to refer to this client or anything you copy from it as if it's owned by you.
 
 ***PLEASE READ THE LICENSE BEFORE DOING ANYTHING WITH THE SOURCE CODE OF THE CLIENT.***.
 
 You are allowed to modify the code of this client and publish your version of this client **either as open-source or closed-source, but not sold.** Please respect me, my project and yourself.
+
+# Argon Minecraft Ghost Client
 
 ## Why?
 
