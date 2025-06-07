@@ -108,7 +108,7 @@ public final class DoubleAnchor extends Module implements TickListener {
     }
 
     private boolean checkActivationKey() {
-        final int d = this.activateKey.getValue();
+        final int d = this.activateKey.getKey();
         if (d == -1 || !KeyUtils.isKeyPressed(d)) {
             this.resetState();
             return false;
