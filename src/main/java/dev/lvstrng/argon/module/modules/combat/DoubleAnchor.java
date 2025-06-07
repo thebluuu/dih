@@ -6,6 +6,13 @@ import dev.lvstrng.argon.module.Module;
 import dev.lvstrng.argon.module.setting.NumberSetting;
 import dev.lvstrng.argon.module.setting.KeybindSetting;
 import dev.lvstrng.argon.utils.BlockUtils;
+import dev.lvstrng.argon.utils.KeyUtils;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import dev.lvstrng.argon.utils.InventoryUtils;
 import dev.lvstrng.argon.utils.EncryptedString;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
@@ -54,34 +61,34 @@ public final class DoubleAnchor extends Module implements TickListener {
             return;
         }
         final HitResult crosshairTarget = this.mc.crosshairTarget;
-        if (!(this.mc.crosshairTarget instanceof BlockHitResult) || BlockUtil.isBlockAtPosition(((BlockHitResult) crosshairTarget).getBlockPos(), Blocks.AIR)) {
+        if (!(this.mc.crosshairTarget instanceof BlockHitResult) || BlockUtils.isBlockAtPosition(((BlockHitResult) crosshairTarget).getBlockPos(), Blocks.AIR)) {
             this.isAnchoring = false;
             this.resetState();
             return;
         }
-        if (this.delayCounter < this.switchDelay.getIntValue()) {
+        if (this.delayCounter < this.switchDelay.getValueInt()) {
             ++this.delayCounter;
             return;
         }
         if (this.step == 0) {
-            InventoryUtil.selectItemFromHotbar(Items.RESPAWN_ANCHOR);
+            InventoryUtils.selectItemFromHotbar(Items.RESPAWN_ANCHOR);
         } else if (this.step == 1) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 2) {
-            InventoryUtil.selectItemFromHotbar(Items.GLOWSTONE);
+            InventoryUtils.selectItemFromHotbar(Items.GLOWSTONE);
         } else if (this.step == 3) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 4) {
-            InventoryUtil.selectItemFromHotbar(Items.RESPAWN_ANCHOR);
+            InventoryUtils.selectItemFromHotbar(Items.RESPAWN_ANCHOR);
         } else if (this.step == 5) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 6) {
-            InventoryUtil.selectItemFromHotbar(Items.GLOWSTONE);
+            InventoryUtils.selectItemFromHotbar(Items.GLOWSTONE);
         } else if (this.step == 7) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 8) {
-            InventoryUtil.swap(this.totemSlot.getIntValue() - 1);
+            InventoryUtils.swap(this.totemSlot.getIntValue() - 1);
         } else if (this.step == 9) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 10) {
