@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import org.lwjgl.glfw.GLFW;
 
 public final class DoubleAnchor extends Module implements TickListener {
-    private final BindSetting activateKey = new BindSetting(EncryptedString.of("Activate Key"), 71, false).setDescription(EncryptedString.of("Key that starts double anchoring"));
+    private final KeyBindSetting activateKey = new KeyBindSetting(EncryptedString.of("Activate Key"), 71, false).setDescription(EncryptedString.of("Key that starts double anchoring"));
     private final NumberSetting switchDelay = new NumberSetting(EncryptedString.of("Switch Delay"), 0.0, 20.0, 0.0, 1.0);
     private final NumberSetting totemSlot = new NumberSetting(EncryptedString.of("Totem Slot"), 1.0, 9.0, 1.0, 1.0);
     private int delayCounter = 0;
