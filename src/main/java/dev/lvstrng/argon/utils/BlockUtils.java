@@ -30,6 +30,10 @@ public final class BlockUtils {
 		mc.player.setYaw((float) rotation.yaw());
 	}
 
+	public static boolean isBlockAtPosition(final BlockPos blockPos, final Block block) {
+        	return mc.world.getBlockState(blockPos).getBlock() == block;
+    	}
+
 	public static void interactWithBlock(final BlockHitResult blockHitResult, final boolean shouldSwingHand) {
         	final ActionResult result = mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, blockHitResult);
         	if (result.isAccepted() && result.shouldSwingHand() && shouldSwingHand) {
