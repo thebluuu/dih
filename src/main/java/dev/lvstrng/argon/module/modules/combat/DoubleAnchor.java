@@ -88,7 +88,7 @@ public final class DoubleAnchor extends Module implements TickListener {
         } else if (this.step == 7) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 8) {
-            InventoryUtils.swap(this.totemSlot.getIntValue() - 1);
+            InventoryUtils.swap(this.totemSlot.getValueInt() - 1);
         } else if (this.step == 9) {
             BlockUtils.interactWithBlock((BlockHitResult) crosshairTarget, true);
         } else if (this.step == 10) {
