@@ -4,6 +4,7 @@ import dev.lvstrng.argon.utils.rotation.Rotation;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RespawnAnchorBlock;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.Hand;
@@ -28,6 +29,13 @@ public final class BlockUtils {
 		mc.player.setPitch((float) rotation.pitch());
 		mc.player.setYaw((float) rotation.yaw());
 	}
+
+	public static void interactWithBlock(final BlockHitResult blockHitResult, final boolean shouldSwingHand) {
+        	final ActionResult result = mc.interactionManager.interactBlock(mc.player, Hand.MAIN_HAND, blockHitResult);
+        	if (result.isAccepted() && result.shouldSwingHand() && shouldSwingHand) {
+            		mc.player.swingHand(Hand.MAIN_HAND);
+        	}
+    	}
 
 	public static boolean isAnchorCharged(BlockPos pos) {
 		if (isBlock(pos, Blocks.RESPAWN_ANCHOR)) {
